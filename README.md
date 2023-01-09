@@ -40,7 +40,7 @@ The state for an individual channel can be retrieved by retrieving http://192.16
 Tango server has the following self-explanatory layout. It allows setting **http_address** 
 and **pwm_channel** as properties and has attributes to control intensity of the PWM (0-255).
 
-![Pogo Setup](images/pogo-snapshot.png "Pogo Setup illustration")
+![Pogo Setup](https://github.com/lorcat/TangoControls-PWM2Thorlabs/tree/main/images/pogo-snapshot.png "Pogo Setup illustration")
 
 
 
