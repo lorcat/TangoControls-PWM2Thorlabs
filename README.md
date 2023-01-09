@@ -1,7 +1,7 @@
 # TangoControls-PWM2Thorlabs
 Project featuring the stack involving esp32 controlling Thorlabs LEDD1B T-cube LED and Tango Server for communication.
 
-![Illustration](https://raw.githubusercontent.com/lorcat/TangoControls-PWM2Thorlabs/main/images/pogo_snapshot.png "Setup illustration")
+![Illustration](https://raw.githubusercontent.com/lorcat/TangoControls-PWM2Thorlabs/main/images/esp32-tango.png "Setup illustration")
 
 ## ESP32 controller part
 The setup is as follows: <br/>
