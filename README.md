@@ -29,11 +29,11 @@ The starting web page served by device may look like:
 Note that the PWM values may be set from 0 to 1023.
 
 
-Considering the 192.168.0.100 as the IP of the esp32 device the *http://192.168.0.100:8080/pwms* will show the full state of the PWM channels in the form of a json string:
+Considering the 192.168.0.100 as the IP of the esp32 device the `http://192.168.0.100:8080/pwms` will show the full state of the PWM channels in the form of a json string:
     
     {"12": 0, "13": 0, "2": 128, "18": 128, "4": 0, "19": 0}
 
-The state for an individual channel can be retrieved by retrieving *http://192.168.0.100:8080/pwm/2*
+The state for an individual channel can be retrieved by retrieving `http://192.168.0.100:8080/pwm/2`
 
     {"2": 128}
 
