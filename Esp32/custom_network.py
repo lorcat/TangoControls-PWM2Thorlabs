@@ -9,7 +9,7 @@ from time import sleep_ms, time
 
 # Network parameters
 SSID = "TP-LINK_4B2C32"
-PASS = "91054012"
+PASS = "77777777"
 WLAN = None
 
 LED = None
