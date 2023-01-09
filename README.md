@@ -14,6 +14,8 @@ the GPIO pin 3 is high, the device starts webserver based on [tinyweb](https://g
 Esp32c3 board can signal with internal LED - blinking red (connection is being established), solid red (connection failed), 
 green (WIFI connected), purple-white (web server was stated).
 
+Example of WiFi setting up procedure is given in [custom_network.py](../blob/master/Esp32/custom_network.py)
+
 The starting web page served by device may look like:
 
     P02.2 PWM control device
