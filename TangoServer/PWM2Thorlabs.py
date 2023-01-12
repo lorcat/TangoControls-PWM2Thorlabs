@@ -351,7 +351,6 @@ class Worker(threading.Thread):
                     pass
 
                 self.ch = None
-                self.ch_onoff = None
                 self.ch_last = None
                 return res
 
