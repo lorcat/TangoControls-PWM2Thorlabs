@@ -65,6 +65,7 @@ class Worker(threading.Thread):
     K_CH = "CH"
     K_CHONOFF = "CH_ONOFF"
     K_CHONOFFSTATE = "CH_ONOFFSTATE"
+    K_CHONOFFSTATECOMERR = "K_CHONOFFSTATECOMERR"
 
     CH_OFF = 0
     CH_ON = 1
@@ -105,7 +106,8 @@ class Worker(threading.Thread):
         self._qstop = queue.Queue()
 
         # storage for the values and their locks - value of the channel, last value for on state, on/off state
-        self._storage = {self.K_CH: None, self.K_CHONOFF: None, self.K_CHONOFFSTATE: self.CH_ON}
+        self._storage = {self.K_CH: None, self.K_CHONOFF: None, self.K_CHONOFFSTATE: self.CH_ON,
+                         self.K_CHONOFFSTATECOMERR: None}
 
         # off state storage - we save current value from cache to recover it later when user requests on state
         self.lock_storage = threading.Lock()
@@ -167,6 +169,17 @@ class Worker(threading.Thread):
     def ch_onoff(self, value):
         with self.lock_storage:
             self._storage[self.K_CHONOFFSTATE] = value
+
+            # keep track of old values in case of communication error
+            if value is not None:
+                self._storage[self.K_CHONOFFSTATECOMERR] = value
+
+    @property
+    def ch_onoffcommerr(self):
+        res = None
+        with self.lock_storage:
+            res = self._storage[self.K_CHONOFFSTATECOMERR]
+        return res
 
     @property
     def ch_last(self):
@@ -351,6 +364,7 @@ class Worker(threading.Thread):
                     pass
 
                 self.ch = None
+                self.ch_onoff = None
                 self.ch_last = None
                 return res
 
@@ -362,6 +376,10 @@ class Worker(threading.Thread):
 
             if self._bfirst_run:
                self._bfirst_run = False
+
+            # recover from a communication error
+            if self.ch_onoff is None:
+                self.ch_onoff = self.ch_onoffcommerr
 
         # return data
         if bconnok and req.ok:
