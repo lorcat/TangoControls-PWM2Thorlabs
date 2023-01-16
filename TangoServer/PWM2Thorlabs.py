@@ -107,7 +107,7 @@ class Worker(threading.Thread):
 
         # storage for the values and their locks - value of the channel, last value for on state, on/off state
         self._storage = {self.K_CH: None, self.K_CHONOFF: None, self.K_CHONOFFSTATE: self.CH_ON,
-                         self.K_CHONOFFSTATECOMERR: None}
+                         self.K_CHONOFFSTATECOMERR: self.CH_OFF}
 
         # off state storage - we save current value from cache to recover it later when user requests on state
         self.lock_storage = threading.Lock()
